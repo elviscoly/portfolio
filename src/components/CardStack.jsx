@@ -37,14 +37,23 @@ const colorClasses = {
   mint: 'bg-mint',
 };
 
-export default function CardStack({ theme, color, icon, category, title, stats }) {
+export default function CardStack({ theme, color, icon, category, title, stats, image }) {
   return (
     <div className={`card-stack theme-${theme}`}>
       <div className="card-main">
         <div className="card-header">
-          <div className={`icon-circle ${colorClasses[color]}`}>
-            {iconSvgs[icon]}
-          </div>
+          {image ? (
+            <div className="card-image-container">
+              <img src={image} alt={title} className="card-image" />
+              <div className={`icon-circle overlay ${colorClasses[color]}`}>
+                {iconSvgs[icon]}
+              </div>
+            </div>
+          ) : (
+            <div className={`icon-circle ${colorClasses[color]}`}>
+              {iconSvgs[icon]}
+            </div>
+          )}
         </div>
         <div className="card-content">
           <span className="meta-label">{category}</span>
